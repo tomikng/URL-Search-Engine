@@ -12,7 +12,7 @@ This project is a text search engine that allows users to crawl web pages, prepr
 - Command line interface for interacting with the search engine.
 
 ## Installation
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
+1. Clone the repository: `git clone https://github.com/tomikng/URL-Search-Engine`
 2. Navigate to the project directory: `cd your-repo`
 
 ## Scripts
