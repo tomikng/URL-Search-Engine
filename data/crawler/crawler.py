@@ -2,9 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse, urljoin
 
+
 def is_valid(url):
     parsed = urlparse(url)
     return bool(parsed.netloc) and bool(parsed.scheme)
+
 
 def get_all_website_links(url):
     urls = set()
@@ -33,11 +35,9 @@ def get_all_website_links(url):
 
     return urls
 
-if __name__ == "__main__":
-    url = input("Enter website url: ")
-    links = get_all_website_links(url)
 
-    filename = "../urls/" + urlparse(url).netloc + "_urls.txt"
+def save_links_to_file(url, links, directory):
+    filename = directory + urlparse(url).netloc + "_urls.txt"
     with open(filename, "w") as f:
-        for url in links:
-            f.write(url + "\n")
+        for link in links:
+            f.write(link + "\n")
