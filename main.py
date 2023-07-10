@@ -15,11 +15,15 @@ import os
 
 
 def crawl_and_tokenize():
-    # Clear the directories
-    shutil.rmtree('data/urls/')
-    shutil.rmtree('data/data/')
-    os.makedirs('data/urls/')
-    os.makedirs('data/data/')
+    # Clear the directories if they exist
+    if os.path.exists('data/urls/'):
+        shutil.rmtree('data/urls/')
+    if os.path.exists('data/data/'):
+        shutil.rmtree('data/data/')
+
+    # Create the directories
+    os.makedirs('data/urls/', exist_ok=True)
+    os.makedirs('data/data/', exist_ok=True)
 
     # Get user input
     input_urls = url_entry.get().strip()
