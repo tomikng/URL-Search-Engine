@@ -1,40 +1,60 @@
 # Text Search Engine
 
 ## Overview
-This project is a text search engine that allows users to crawl web pages, preprocess the data, create a TF-IDF matrix, and perform queries to retrieve the most relevant documents based on the search query. The search engine is implemented using Python and various libraries such as BeautifulSoup, NLTK, and scikit-learn.
+This project is a text search engine that employs various techniques to search web content efficiently. The tool is built with Python and uses a variety of libraries including BeautifulSoup, NLTK, and scikit-learn. It crawls web pages, preprocesses data, creates a TF-IDF matrix, and processes queries to find the most relevant documents related to a search query.
+
+## Terminology
+Before delving into the features, here are explanations of some terms that are essential to understanding how the search engine works:
+
+- **Web Crawling:** This is the process of programmatically browsing the internet to collect web page data. It's like sending out a robot to visit web pages, read their content, and bring the data back.
+
+- **Tokenization:** This is the process of breaking down text into individual words or terms, known as tokens. For example, the sentence "This is a sentence" would be tokenized into ["This", "is", "a", "sentence"].
+
+- **Stop Words:** These are commonly used words in a language (like 'is', 'an', 'the', 'and' in English) that are typically filtered out during text processing since they don't provide significant meaning on their own.
+
+- **Stemming:** This is the process of reducing a word to its base or root form. For example, "running", "runs", and "ran" all stem from the root word "run". This helps in understanding the semantic meaning of texts.
+
+- **TF-IDF Matrix:** TF-IDF stands for Term Frequency-Inverse Document Frequency. It's a statistical measure used to evaluate the importance of a word to a document in a collection or corpus. The TF-IDF value increases proportionally to the number of times a word appears in the document, but is offset by the frequency of the word in the corpus, helping to adjust for the fact that some words appear more frequently in general.
+
+- **Cosine Similarity:** This is a measure used to determine how similar two documents are to each other. It's calculated by taking the cosine of the angle between two vectors. In the context of this search engine, each document and query is transformed into a vector in multi-dimensional space, and the cosine similarity is calculated to determine how closely related a document is to a given query.
 
 ## Features
-- Web crawler to collect web pages from specified domains.
-- Preprocessing of web page content including tokenization, stop word removal, and stemming.
-- Creation of a TF-IDF matrix to represent the documents.
-- Query processing to transform user queries into vectors and retrieve relevant documents.
-- Ranking of documents based on cosine similarity.
-- Command line interface for interacting with the search engine.
+- **Web Crawling:** Collects web pages from specified domains.
+- **Data Preprocessing:** Performs tokenization, stop word removal, and stemming on the crawled web page data.
+- **TF-IDF Matrix Creation:** Uses the preprocessed data to create a TF-IDF matrix, which gives a numerical representation of the importance of different words in the documents.
+- **Query Processing:** Transforms user queries into vectors similar to those used to represent the documents, and retrieves relevant documents based on this.
+- **Document Ranking:** Ranks the documents based on cosine similarity to the query vector, which gives a measure of how relevant a document is to the query.
 
 ## Installation
 1. Clone the repository: `git clone https://github.com/tomikng/URL-Search-Engine`
 2. Navigate to the project directory: `cd your-repo`
 
+## GUI
+This application has a graphical user interface (GUI) built with a Python library called Tkinter, which makes it easier to use. After starting the program, you'll see areas to input URLs for the web pages you want to search, a place to input a search query, and a search button to start the search.
+
 ## Scripts
+The different functionalities of this application are implemented in separate Python scripts. Here's a brief overview of what each script does:
 
-### crawler.py
-The `crawler.py` script implements a web crawler that collects web pages from specified domains. It uses the requests library to retrieve web pages and BeautifulSoup to parse the HTML content. The collected URLs are saved to separate files for each domain.
+- **crawler.py:** Implements a web crawler that visits web pages and collects their data.
+- **preprocessor.py:** Preprocesses the collected web page data by tokenizing the content, removing stop words, and performing stemming.
+- **tfidf_vectorizer.py:** Creates a TF-IDF matrix from the preprocessed web page data.
+- **query_processor.py:** Handles the transformation of user queries into vectors, using the same method used for the documents.
+- **rank_documents.py:** Ranks the documents based on their cosine similarity to the query vector.
+- **main.py:** The main script that you run to use the application. It controls the other scripts and provides a graphical interface for user interaction.
 
-### preprocessor.py
-The `preprocessor.py` script performs preprocessing on the collected web page data. It tokenizes the content, removes stop words, and performs stemming. The preprocessed tokens are saved to separate files for each web page.
+## Future Work
+We are currently in the process of developing a more user-friendly GUI for the application, so stay tuned for updates!
 
-### tfidf_vectorizer.py
-The `tfidf_vectorizer.py` script creates a TF-IDF matrix based on the preprocessed web page data. It uses the TfidfVectorizer from scikit-learn to calculate the TF-IDF weights. The resulting matrix is saved as a NumPy array.
+## Usage
+To use the text search engine, follow these steps:
+1. Clone the repository.
+2. Run `python main.py` from the terminal.
 
-### query_processor.py
-The `query_processor.py` script handles the processing of user queries. It tokenizes the query, removes stop words, performs stemming, and represents the query as a TF-IDF weighted vector using the same vectorizer as used for the documents.
-
-### rank_documents.py
-The `rank_documents.py` script ranks the documents based on cosine similarity between the query vector and the document vectors. It uses the cosine_similarity function from scikit-learn to calculate the cosine similarities. The top-k most relevant documents are returned.
-
-### main.py
-The `main.py` script is the entry point of the application. It orchestrates the execution of the different scripts based on user commands. It provides command-line interface options to crawl, preprocess, create the TF-IDF matrix, and perform query searches.
-
-## GUI (Work in Progress)
-A graphical user interface (GUI) is currently being developed to provide a more user-friendly way to interact with the text search engine. Stay tuned for updates on the GUI development.
-
+## Dependencies
+Make sure that the following Python libraries are installed on your machine:
+- `requests`
+- `beautifulsoup4`
+- `nltk`
+- `scikit-learn`
+- `numpy`
+- `tkinter`
